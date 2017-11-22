@@ -1,0 +1,327 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>AllPutTogether</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-10-11"><meta name="DC.source" content="AllPutTogether.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">&#20351;&#29992;AUC&#26469;&#35780;&#20215;KDLP&#31639;&#27861;&#24212;&#29992;&#22312;Jazz&#32593;&#32476;&#19978;&#30340;&#39044;&#27979;&#20934;&#30830;&#24615;&#65292;&#20351;&#29992;H-index&#20316;&#20026;&#34913;&#37327;&#33410;&#28857;&#30340;&#37325;&#35201;&#24615;&#26041;&#27861;</a></li><li><a href="#2">&#21010;&#20998;&#35757;&#32451;&#38598;train&#21644;&#27979;&#35797;&#38598;test&#65292;&#20445;&#35777;&#35757;&#32451;&#38598;&#36830;&#36890;</a></li><li><a href="#3">&#35745;&#31639;&#27599;&#20010;&#33410;&#28857;&#30340;H-index</a></li><li><a href="#4">&#20026;&#32593;&#32476;&#19978;&#30340;&#36793;&#21152;&#26435;</a></li><li><a href="#5">&#23558;KDLP&#31639;&#27861;&#24212;&#29992;&#22312;&#21152;&#26435;&#21518;&#30340;&#32593;&#32476;&#19978;&#65292;&#29983;&#25104;&#30456;&#20284;&#24615;&#30697;&#38453;</a></li><li><a href="#6">&#26681;&#25454;&#35745;&#31639;&#30340;&#30456;&#20284;&#24615;&#30697;&#38453;&#35745;&#31639;AUC</a></li></ul></div><h2>&#20351;&#29992;AUC&#26469;&#35780;&#20215;KDLP&#31639;&#27861;&#24212;&#29992;&#22312;Jazz&#32593;&#32476;&#19978;&#30340;&#39044;&#27979;&#20934;&#30830;&#24615;&#65292;&#20351;&#29992;H-index&#20316;&#20026;&#34913;&#37327;&#33410;&#28857;&#30340;&#37325;&#35201;&#24615;&#26041;&#27861;<a name="1"></a></h2><p>&#35757;&#32451;&#38598;&#12289;&#27979;&#35797;&#38598;&#26159;&#38543;&#26426;&#21010;&#20998;&#30340;&#65292;auc&#20540;&#30340;&#35745;&#31639;&#20063;&#26377;&#19968;&#23450;&#38543;&#26426;&#24615;&#65292;&#20294;&#22312;&#26412;&#20363;&#23376;&#20013;&#21482;&#20570;&#19968;&#27425;&#21010;&#20998;&#21644;auc&#35745;&#31639;&#12290; &#23545;&#20110;&#27599;&#20010;&#32593;&#32476;&#65292;&#25353;&#29031;ratioTrain&#30340;&#27604;&#20363;&#21010;&#20998;&#35757;&#32451;&#38598;&#65292;&#24182;&#35745;&#31639;auc&#20540;&#12290;</p><pre class="codeinput">clear;
+ratioTrain=0.9;<span class="comment">%&#35757;&#32451;&#38598;&#27604;&#20363;</span>
+load <span class="string">netJazz</span>;<span class="comment">%&#21152;&#36733;&#24050;&#32463;&#39044;&#22788;&#29702;&#36807;&#30340;&#32593;&#32476;&#25968;&#25454;&#65292;&#37051;&#25509;&#30697;&#38453;&#24418;&#24335;</span>
+disp(<span class="string">'netJazz!'</span>);
+</pre><pre class="codeoutput">netJazz!
+</pre><h2>&#21010;&#20998;&#35757;&#32451;&#38598;train&#21644;&#27979;&#35797;&#38598;test&#65292;&#20445;&#35777;&#35757;&#32451;&#38598;&#36830;&#36890;<a name="2"></a></h2><pre class="codeinput">thisdiv = [];<span class="comment">%&#23384;&#25918;&#26412;&#27425;&#21010;&#20998;&#30340;auc&#20540;</span>
+num_testlinks = ceil((1-ratioTrain) * nnz(net)/2);
+<span class="comment">% &#30830;&#23450;&#27979;&#35797;&#38598;&#30340;&#36793;&#25968;&#30446;</span>
+[xindex, yindex] = find(tril(net));  linklist = [xindex yindex];
+<span class="comment">% &#23558;&#32593;&#32476;&#65288;&#37051;&#25509;&#30697;&#38453;&#65289;&#20013;&#25152;&#26377;&#30340;&#36793;&#25214;&#20986;&#26469;&#65292;&#23384;&#20837;linklist</span>
+clear <span class="string">xindex</span> <span class="string">yindex</span>;
+<span class="comment">% &#20026;&#27599;&#26465;&#36793;&#35774;&#32622;&#26631;&#24535;&#20301;&#65292;&#21028;&#26029;&#26159;&#21542;&#33021;&#21024;&#38500;</span>
+test = sparse(size(net,1),size(net,2));
+<span class="keyword">while</span> (nnz(test) &lt; num_testlinks)
+
+    <span class="comment">%---- &#38543;&#26426;&#36873;&#25321;&#19968;&#26465;&#36793;</span>
+    index_link = ceil(rand(1) * length(linklist));
+    uid1 = linklist(index_link,1);
+    uid2 = linklist(index_link,2);
+
+    <span class="comment">%---- &#21028;&#26029;&#25152;&#36873;&#36793;&#20004;&#31471;&#33410;&#28857;uid1&#21644;uid2&#26159;&#21542;&#21487;&#36798;&#65292;&#33509;&#21487;&#36798;&#21017;&#21487;&#25918;&#20837;&#27979;&#35797;&#38598;&#65292;&#21542;&#21017;&#37325;&#26032;&#25361;&#36873;&#19968;&#26465;&#36793;</span>
+    net(uid1,uid2) = 0;     net(uid2,uid1) = 0;
+    <span class="comment">% &#23558;&#36825;&#26465;&#36793;&#20174;&#32593;&#32476;&#20013;&#25366;&#21435;&#29992;&#20197;&#21028;&#26029;&#25366;&#25481;&#21518;&#30340;&#32593;&#32476;&#26159;&#21542;&#36824;&#36830;&#36890;</span>
+    tempvector = net(uid1,:);
+    <span class="comment">% &#21462;&#20986;uid1&#19968;&#27493;&#21487;&#36798;&#30340;&#28857;&#65292;&#26500;&#24314;&#25104;&#19968;&#32500;&#21521;&#37327;</span>
+    sign = 0;
+    <span class="comment">% &#26631;&#35760;&#27492;&#36793;&#26159;&#21542;&#21487;&#20197;&#34987;&#31227;&#38500;&#65292;sign=0&#34920;&#31034;&#19981;&#21487;&#65307; sign=1&#34920;&#31034;&#21487;&#20197;</span>
+    uid1TOuid2 = tempvector * net + tempvector;
+    <span class="comment">% uid1TOuid2&#34920;&#31034;&#20108;&#27493;&#20869;&#21487;&#36798;&#30340;&#28857;</span>
+    <span class="keyword">if</span> uid1TOuid2(uid2) &gt; 0
+        sign = 1;
+        <span class="comment">% &#20108;&#27493;&#21363;&#21487;&#36798;</span>
+    <span class="keyword">else</span>
+        <span class="keyword">while</span> (nnz(spones(uid1TOuid2) - tempvector) ~=0)
+            <span class="comment">% &#30452;&#21040;&#21487;&#36798;&#30340;&#28857;&#21040;&#36798;&#31283;&#23450;&#29366;&#24577;&#65292;&#20173;&#28982;&#19981;&#33021;&#21040;&#36798;uid2&#65292;&#27492;&#36793;&#23601;&#19981;&#33021;&#34987;&#21024;&#38500;</span>
+            tempvector = spones(uid1TOuid2);
+            uid1TOuid2 = tempvector * net + tempvector;
+            <span class="comment">% &#27492;&#27493;&#30340;uid1TOuid2&#34920;&#31034;K&#27493;&#20869;&#21487;&#36798;&#30340;&#28857;</span>
+            <span class="keyword">if</span> uid1TOuid2(uid2) &gt; 0
+                sign = 1;
+                <span class="comment">% &#26576;&#27493;&#20869;&#21487;&#36798;</span>
+                <span class="keyword">break</span>;
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+    <span class="comment">% &#32467;&#26463;-&#21028;&#26029;uid1&#26159;&#21542;&#21487;&#36798;uid2</span>
+
+    <span class="comment">%----&#33509;&#27492;&#36793;&#21487;&#21024;&#38500;&#65292;&#21017;&#23558;&#20043;&#25918;&#20837;&#27979;&#35797;&#38598;&#20013;&#65292;&#24182;&#23558;&#27492;&#36793;&#20174;linklist&#20013;&#31227;&#38500;</span>
+    <span class="keyword">if</span> sign == 1 <span class="comment">%&#27492;&#36793;&#21487;&#20197;&#21024;&#38500;</span>
+        linklist(index_link,:) = [];
+        test(uid1,uid2) = 1;
+    <span class="keyword">else</span>
+        linklist(index_link,:) = [];
+        net(uid1,uid2) = 1;
+        net(uid2,uid1) = 1;
+    <span class="keyword">end</span>
+    <span class="comment">% &#32467;&#26463;-&#21028;&#26029;&#27492;&#36793;&#26159;&#21542;&#21487;&#20197;&#21024;&#38500;&#24182;&#20316;&#30456;&#24212;&#22788;&#29702;</span>
+<span class="keyword">end</span>
+<span class="comment">% &#32467;&#26463;&#65288;while&#65289;-&#27979;&#35797;&#38598;&#20013;&#30340;&#36793;&#36873;&#21462;&#23436;&#27605;</span>
+train = net;  test = test + test';
+<span class="comment">% &#36820;&#22238;&#20026;&#35757;&#32451;&#38598;&#21644;&#27979;&#35797;&#38598;</span>
+train = sparse(train); test = sparse(test);
+train = spones(train + train'); test = spones(test+test');
+</pre><h2>&#35745;&#31639;&#27599;&#20010;&#33410;&#28857;&#30340;H-index<a name="3"></a></h2><p>&#36890;&#29992;&#20110;&#26377;&#21521;&#32593;&#32476;&#65292;x-&gt;y&#34920;&#31034;x&#20851;&#27880;&#25110;&#24341;&#29992;y&#65292;&#35828;&#26126;y&#20256;&#25773;&#20102;&#30693;&#35782;&#32473;x</p><pre class="codeinput">[m,n]=size(train);<span class="comment">%&#30697;&#38453;&#22823;&#23567;</span>
+<span class="comment">% &#35745;&#31639;H-index</span>
+drepmat = repmat(sum(train,1)',1,n).*train;
+<span class="comment">% sum(train,1)&#27599;&#21015;&#20803;&#32032;&#30456;&#21152;&#24471;&#21040;&#34892;&#21521;&#37327;&#65292;&#34892;&#21521;&#37327;&#27599;&#20010;&#20803;&#32032;&#34920;&#31034;&#21015;&#26631;&#33410;&#28857;&#30340;&#20837;&#24230;</span>
+<span class="comment">% .*train&#33719;&#24471;&#27599;&#26465;&#26377;&#21521;&#36793;&#31661;&#23614;&#33410;&#28857;&#30340;&#20837;&#24230;</span>
+Heach = zeros(1,m);<span class="comment">%&#23384;&#25918;&#27599;&#20010;&#33410;&#28857;&#30340;H-index&#30340;&#34892;&#21521;&#37327;</span>
+<span class="keyword">for</span> i = 1:m
+    f = 1;
+    H = 0;
+    <span class="keyword">while</span> f ~= 0
+        <span class="keyword">if</span> sum(drepmat(:,i)&gt;=f) &gt;= f;<span class="comment">%&#33719;&#21462;&#31532;i&#21015;&#21363;&#25351;&#21521;i&#33410;&#28857;&#30340;&#33410;&#28857;&#38598;&#30340;h&#25351;&#25968;</span>
+            H=f;
+            f=f+1;
+        <span class="keyword">else</span>
+            f=0;
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+    Heach(i) = H;
+<span class="keyword">end</span>
+Heach = Heach+1;
+</pre><h2>&#20026;&#32593;&#32476;&#19978;&#30340;&#36793;&#21152;&#26435;<a name="4"></a></h2><p>&#21152;&#26435;&#20844;&#24335;: <img src="AllPutTogether_eq02493754248499853360.png" alt="$A_{xy}=\frac{h_{y}+1}{\sum_{N_{x}}(h_{n}+1)}, n\in N_{x}$"></p><pre class="codeinput">clear <span class="string">drepmat</span>;
+Hrepmat = repmat(Heach,m,1).*train;<span class="comment">%.*train&#33719;&#24471;&#27599;&#26465;&#26377;&#21521;&#36793;&#31661;&#22836;&#33410;&#28857;&#30340;H-index</span>
+clear <span class="string">Heach</span>;
+sim = Hrepmat./repmat(sum(Hrepmat,2),1,n);
+<span class="comment">% &#20998;&#27597;&#26159;&#31639;&#20986;&#33410;&#28857;&#30340;&#25351;&#21521;&#30340;&#25152;&#26377;&#33410;&#28857;&#30340;H-index&#20043;&#21644;&#65292;&#34920;&#31034;&#33410;&#28857;&#25509;&#25910;&#30340;&#30693;&#35782;&#24635;&#37327;</span>
+<span class="comment">% &#20998;&#23376;&#38500;&#20197;&#20998;&#27597;&#35828;&#26126;&#33410;&#28857;&#30340;&#37051;&#23621;&#21344;&#33410;&#28857;&#25509;&#25910;&#30340;&#30693;&#35782;&#37327;&#30340;&#27604;&#20363;</span>
+clear <span class="string">Hrepmat</span>;
+sim(isnan(sim))=0;sim(isinf(sim)) = 0;<span class="comment">%&#20998;&#27597;&#26377;&#21487;&#33021;&#26159;0&#65292;&#21363;&#19981;&#25351;&#21521;&#20219;&#20309;&#33410;&#28857;&#30340;&#33410;&#28857;</span>
+</pre><h2>&#23558;KDLP&#31639;&#27861;&#24212;&#29992;&#22312;&#21152;&#26435;&#21518;&#30340;&#32593;&#32476;&#19978;&#65292;&#29983;&#25104;&#30456;&#20284;&#24615;&#30697;&#38453;<a name="5"></a></h2><p>&#35745;&#31639;&#27599;&#23545;&#33410;&#28857;&#30340;&#30456;&#20284;&#24615;&#65292;&#24212;&#29992;&#20844;&#24335;: <img src="AllPutTogether_eq00245367054759406853.png" alt="$S^{KDLP}=(I-\beta A)^{-1}-I$"></p><pre class="codeinput">sim = inv( sparse(eye(m)) - 0.001*sim);
+sim = sim - sparse(eye(m));
+sim = sim+sim';<span class="comment">%&#26080;&#21521;&#22270;&#38656;&#35201;&#23545;&#31216;&#22788;&#29702;</span>
+</pre><h2>&#26681;&#25454;&#35745;&#31639;&#30340;&#30456;&#20284;&#24615;&#30697;&#38453;&#35745;&#31639;AUC<a name="6"></a></h2><p>&#20844;&#24335;&#65306; <img src="AllPutTogether_eq00954178405957075665.png" alt="$auc=\frac{n1+0.5*n2}{n}$"></p><pre class="codeinput">n=10000;
+sim = triu(sim - sim.*train);
+<span class="comment">% &#21482;&#20445;&#30041;&#27979;&#35797;&#38598;&#21644;&#19981;&#23384;&#22312;&#36793;&#38598;&#21512;&#20013;&#30340;&#36793;&#30340;&#30456;&#20284;&#24230;&#65288;&#33258;&#29615;&#38500;&#22806;&#65289;</span>
+non = 1 - train - test - eye(max(size(train,1),size(train,2)));
+test = triu(test);
+non = triu(non);
+<span class="comment">% &#20998;&#21035;&#21462;&#27979;&#35797;&#38598;&#21644;&#19981;&#23384;&#22312;&#36793;&#38598;&#21512;&#30340;&#19978;&#19977;&#35282;&#30697;&#38453;&#65292;&#29992;&#20197;&#21462;&#20986;&#20182;&#20204;&#23545;&#24212;&#30340;&#30456;&#20284;&#24230;&#20998;&#20540;</span>
+test_num = nnz(test);
+non_num = nnz(non);
+test_rd = ceil( test_num * rand( 1, n));
+<span class="comment">% ceil&#26159;&#21462;&#22823;&#20110;&#31561;&#20110;&#30340;&#26368;&#23567;&#25972;&#25968;&#65292;n&#20026;&#25277;&#26679;&#27604;&#36739;&#30340;&#27425;&#25968;</span>
+non_rd = ceil( non_num * rand( 1, n));
+test_pre = sim .* test;
+non_pre = sim .* non;
+test_data =  test_pre( test == 1 )';
+<span class="comment">% &#34892;&#21521;&#37327;&#65292;test &#38598;&#21512;&#23384;&#22312;&#30340;&#36793;&#30340;&#39044;&#27979;&#20540;</span>
+non_data =  non_pre( non == 1 )';
+<span class="comment">% &#34892;&#21521;&#37327;&#65292;nonexist&#38598;&#21512;&#23384;&#22312;&#30340;&#36793;&#30340;&#39044;&#27979;&#20540;</span>
+test_rd = test_data( test_rd );
+non_rd = non_data( non_rd );
+clear <span class="string">test_data</span> <span class="string">non_data</span>;
+n1 = length( find(test_rd &gt; non_rd) );
+n2 = length( find(test_rd == non_rd));
+auc = ( n1 + 0.5*n2 ) / n
+</pre><pre class="codeoutput">
+auc =
+
+    0.9693
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% 使用AUC来评价KDLP算法应用在Jazz网络上的预测准确性，使用H-index作为衡量节点的重要性方法
+% 训练集、测试集是随机划分的，auc值的计算也有一定随机性，但在本例子中只做一次划分和auc计算。
+% 对于每个网络，按照ratioTrain的比例划分训练集，并计算auc值。
+clear;
+ratioTrain=0.9;%训练集比例
+load netJazz;%加载已经预处理过的网络数据，邻接矩阵形式
+disp('netJazz!');        
+%% 划分训练集train和测试集test，保证训练集连通
+thisdiv = [];%存放本次划分的auc值
+num_testlinks = ceil((1-ratioTrain) * nnz(net)/2);
+% 确定测试集的边数目
+[xindex, yindex] = find(tril(net));  linklist = [xindex yindex];
+% 将网络（邻接矩阵）中所有的边找出来，存入linklist
+clear xindex yindex;
+% 为每条边设置标志位，判断是否能删除
+test = sparse(size(net,1),size(net,2));
+while (nnz(test) < num_testlinks)
+    
+    %REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH 随机选择一条边
+    index_link = ceil(rand(1) * length(linklist));
+    uid1 = linklist(index_link,1);
+    uid2 = linklist(index_link,2);
+    
+    %REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH 判断所选边两端节点uid1和uid2是否可达，若可达则可放入测试集，否则重新挑选一条边
+    net(uid1,uid2) = 0;     net(uid2,uid1) = 0;
+    % 将这条边从网络中挖去用以判断挖掉后的网络是否还连通
+    tempvector = net(uid1,:);
+    % 取出uid1一步可达的点，构建成一维向量
+    sign = 0;
+    % 标记此边是否可以被移除，sign=0表示不可； sign=1表示可以
+    uid1TOuid2 = tempvector * net + tempvector;
+    % uid1TOuid2表示二步内可达的点
+    if uid1TOuid2(uid2) > 0
+        sign = 1;
+        % 二步即可达
+    else
+        while (nnz(spones(uid1TOuid2) - tempvector) ~=0)
+            % 直到可达的点到达稳定状态，仍然不能到达uid2，此边就不能被删除
+            tempvector = spones(uid1TOuid2);
+            uid1TOuid2 = tempvector * net + tempvector;
+            % 此步的uid1TOuid2表示K步内可达的点
+            if uid1TOuid2(uid2) > 0
+                sign = 1;
+                % 某步内可达
+                break;
+            end
+        end
+    end
+    % 结束-判断uid1是否可达uid2
+    
+    %REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH若此边可删除，则将之放入测试集中，并将此边从linklist中移除
+    if sign == 1 %此边可以删除
+        linklist(index_link,:) = [];
+        test(uid1,uid2) = 1;
+    else
+        linklist(index_link,:) = [];
+        net(uid1,uid2) = 1;
+        net(uid2,uid1) = 1;
+    end
+    % 结束-判断此边是否可以删除并作相应处理
+end
+% 结束（while）-测试集中的边选取完毕
+train = net;  test = test + test';
+% 返回为训练集和测试集
+train = sparse(train); test = sparse(test);
+train = spones(train + train'); test = spones(test+test');
+%% 计算每个节点的H-index
+% 通用于有向网络，x->y表示x关注或引用y，说明y传播了知识给x
+[m,n]=size(train);%矩阵大小
+% 计算H-index
+drepmat = repmat(sum(train,1)',1,n).*train;
+% sum(train,1)每列元素相加得到行向量，行向量每个元素表示列标节点的入度
+% .*train获得每条有向边箭尾节点的入度
+Heach = zeros(1,m);%存放每个节点的H-index的行向量
+for i = 1:m
+    f = 1;
+    H = 0;
+    while f ~= 0
+        if sum(drepmat(:,i)>=f) >= f;%获取第i列即指向i节点的节点集的h指数
+            H=f;
+            f=f+1;
+        else
+            f=0;
+        end
+    end
+    Heach(i) = H;
+end
+Heach = Heach+1;
+%% 为网络上的边加权
+% 加权公式:
+% $A_{xy}=\frac{h_{y}+1}{\sum_{N_{x}}(h_{n}+1)}, n\in N_{x}$
+clear drepmat;
+Hrepmat = repmat(Heach,m,1).*train;%.*train获得每条有向边箭头节点的H-index
+clear Heach;
+sim = Hrepmat./repmat(sum(Hrepmat,2),1,n);
+% 分母是算出节点的指向的所有节点的H-index之和，表示节点接收的知识总量
+% 分子除以分母说明节点的邻居占节点接收的知识量的比例
+clear Hrepmat;
+sim(isnan(sim))=0;sim(isinf(sim)) = 0;%分母有可能是0，即不指向任何节点的节点
+%% 将KDLP算法应用在加权后的网络上，生成相似性矩阵
+% 计算每对节点的相似性，应用公式:
+% $S^{KDLP}=(I-\beta A)^{-1}-I$
+sim = inv( sparse(eye(m)) - 0.001*sim);
+sim = sim - sparse(eye(m));
+sim = sim+sim';%无向图需要对称处理
+%% 根据计算的相似性矩阵计算AUC
+% 公式：
+% $auc=\frac{n1+0.5*n2}{n}$
+n=10000;
+sim = triu(sim - sim.*train);
+% 只保留测试集和不存在边集合中的边的相似度（自环除外）
+non = 1 - train - test - eye(max(size(train,1),size(train,2)));
+test = triu(test);
+non = triu(non);
+% 分别取测试集和不存在边集合的上三角矩阵，用以取出他们对应的相似度分值
+test_num = nnz(test);
+non_num = nnz(non);
+test_rd = ceil( test_num * rand( 1, n));
+% ceil是取大于等于的最小整数，n为抽样比较的次数
+non_rd = ceil( non_num * rand( 1, n));
+test_pre = sim .* test;
+non_pre = sim .* non;
+test_data =  test_pre( test == 1 )';
+% 行向量，test 集合存在的边的预测值
+non_data =  non_pre( non == 1 )';
+% 行向量，nonexist集合存在的边的预测值
+test_rd = test_data( test_rd );
+non_rd = non_data( non_rd );
+clear test_data non_data;
+n1 = length( find(test_rd > non_rd) );
+n2 = length( find(test_rd == non_rd));
+auc = ( n1 + 0.5*n2 ) / n
+##### SOURCE END #####
+--></body></html>

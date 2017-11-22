@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+  <head>
+	<title>Wen Zhou</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/homepage.css">
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700|Open+Sans:700' rel='stylesheet' type='text/css'>
+  </head>	
+
+<body>
+<div class="main" id="Home">
+  <div class="headerLine">
+	<div id="menuF" class="default">
+		<div class="container">
+			<div class="row">
+				<!-- <div class="col-md-12"> -->
+					<div class="navmenu" style="text-align: center;">
+						<ul id="menu">
+							<li class="active short"><a href="#Home">Home</a></li>
+							<li class="long"><a href="#Research">Research</a></li>
+							<li class="long"><a href="#publications">publications</a></li>
+							<li class="short"><a href="#Awards">Awards</a></li>
+							<li class="long"><a href="#contact">Students</a></li>
+						</ul>
+					</div>
+				<!-- </div> -->
+			</div>
+		</div>
+	</div>
+	<div class="touxiang"></div>
+	<div class="jianjie">
+		<div>Wen Zhou (Zhou, Wen)<sup> 周 文</sup></div>
+		<p>Associate Professor</p>
+		<p>School of Computer Engineering and Science</p>
+		<p>Shanghai University</p>
+		<p>Work Phone Number: 021-66135303</p>
+		<p>E-Mail: zhouwen@shu.edu.cn</p>
+	</div>
+  </div>
+  <p class="Introduction">
+  Our group conducts research on the structure and function of networks, particularly social and information networks, which we study using a combination of empirical methods, analysis, and computer simulation. Among other things, we have investigated scientific coauthorship networks, citation networks, email networks, friendship networks, epidemiological contact networks, and animal social networks; we've studied fundamental network properties such as degree distributions, centrality measures, assortative mixing, vertex similarity, and community structure, and made analytic or computer models of disease propagation, friendship formation, the spread of computer viruses, the Internet, and network navigation.
+  </p>
+  <div class="news">
+  	<p><span>New *&nbsp;</span>A postgraduate student Yifan Jia graduated</p>
+  	<p><span>New *&nbsp;</span>A postgraduate student Yifan Jia graduated</p>
+  	<p><span>New *&nbsp;</span>A postgraduate student Yifan Jia graduated</p>
+
+  </div>
+  <h2 id="Research">RESEARCH</h2>
+  <h5>An overview of the recent research in our laboratory:</h5>
+  <div class="research">
+  	<div class="researchTitle">
+  		Link Prediction
+  	</div>
+  	<div class="researchPhoto" style="background-image:url(images/baby.jpg);background-size:cover;">
+  	</div>
+  	<div class="researchIntro">
+  		<a href="KDLP/AllPutTogether.html">KDLP算法代码</a>
+  		<br>
+  		<a href="KDLP/UseKDLPtoPredict.html">使用KDLP进行预测</a>
+  	</div>
+  </div>
+</div>
+
+
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var $menu = $("#menuF");
+		var w = $menu.width();
+		$(window).scroll(function(){
+			if ( $(this).scrollTop() > 200 && $menu.hasClass("default") ){
+				$menu.fadeOut('fast',function(){
+					$(this).removeClass("default")
+					.addClass("fixed transbg")
+					.fadeIn('fast');
+				});
+				$menu.css("width",w);
+			} else if($(this).scrollTop() < 200 && $menu.hasClass("fixed")) {
+				$menu.fadeOut('fast',function(){
+					$(this).removeClass("fixed transbg")
+					.addClass("default")
+					.fadeIn('fast');
+				});
+			}
+		});
+		$(window).resize(function() { 
+			w = $("#Home").width();
+			$menu.css("width",w);
+		});
+	});
+    //jQuery
+</script>
+</body>
+</html>

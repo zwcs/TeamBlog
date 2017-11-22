@@ -1,0 +1,255 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>UseKDLPtoPredict</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-10-11"><meta name="DC.source" content="UseKDLPtoPredict.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">&#20351;&#29992;KDLP&#31639;&#27861;&#23545;Jazz&#32593;&#32476;&#36827;&#34892;&#39044;&#27979;&#65292;&#20351;&#29992;H-index&#20316;&#20026;&#34913;&#37327;&#33410;&#28857;&#30340;&#37325;&#35201;&#24615;&#26041;&#27861;</a></li><li><a href="#2">&#35835;&#20837;&#36830;&#36793;&#21015;&#34920;linklist&#65292;&#26500;&#24314;&#32593;&#32476;&#37051;&#25509;&#30697;&#38453;net&#65292;&#26080;&#21521;&#32593;&#32476;</a></li><li><a href="#3">&#35745;&#31639;&#27599;&#20010;&#33410;&#28857;&#30340;H-index</a></li><li><a href="#4">&#20026;&#32593;&#32476;&#19978;&#30340;&#36793;&#21152;&#26435;</a></li><li><a href="#5">&#23558;KDLP&#31639;&#27861;&#24212;&#29992;&#22312;&#21152;&#26435;&#21518;&#30340;&#32593;&#32476;&#19978;&#65292;&#29983;&#25104;&#30456;&#20284;&#24615;&#30697;&#38453;</a></li><li><a href="#6">&#26681;&#25454;&#35745;&#31639;&#30340;&#30456;&#20284;&#24615;&#30697;&#38453;&#30011;&#25955;&#28857;&#22270;&#65292;&#23384;&#22312;&#30340;&#36793;&#21644;&#19981;&#23384;&#22312;&#30340;&#36793;&#39068;&#33394;&#19981;&#21516;</a></li><li><a href="#7">&#21482;&#26174;&#31034;&#19981;&#23384;&#22312;&#30340;&#36793;&#30340;&#30456;&#20284;&#24615;&#65292;&#24182;&#20197;&#39068;&#33394;&#21306;&#20998;&#30456;&#20284;&#24615;&#22823;&#23567;</a></li></ul></div><h2>&#20351;&#29992;KDLP&#31639;&#27861;&#23545;Jazz&#32593;&#32476;&#36827;&#34892;&#39044;&#27979;&#65292;&#20351;&#29992;H-index&#20316;&#20026;&#34913;&#37327;&#33410;&#28857;&#30340;&#37325;&#35201;&#24615;&#26041;&#27861;<a name="1"></a></h2><pre class="codeinput">clear;
+</pre><h2>&#35835;&#20837;&#36830;&#36793;&#21015;&#34920;linklist&#65292;&#26500;&#24314;&#32593;&#32476;&#37051;&#25509;&#30697;&#38453;net&#65292;&#26080;&#21521;&#32593;&#32476;<a name="2"></a></h2><pre class="codeinput">dataname = <span class="string">'Jazz'</span>;
+datapath = <span class="string">'D:\'</span>;       <span class="comment">%&#25968;&#25454;&#38598;&#25152;&#22312;&#30340;&#36335;&#24452;</span>
+thisdatapath = strcat(datapath,dataname,<span class="string">'.txt'</span>);<span class="comment">% &#31532;ith&#20010;&#25968;&#25454;&#30340;&#36335;&#24452;</span>
+linklist = load(thisdatapath);                  <span class="comment">% &#23548;&#20837;&#25968;&#25454;&#65288;&#36793;&#30340;list&#65289;</span>
+<span class="comment">%---- &#22914;&#26524;&#33410;&#28857;&#32534;&#21495;&#20174;0&#24320;&#22987;&#65292;&#23558;&#25152;&#26377;&#33410;&#28857;&#32534;&#21495;&#21152;1&#65288;matlab&#30340;&#19979;&#26631;&#20174;1&#24320;&#22987;&#65289;</span>
+<span class="keyword">if</span> ~all(all(linklist(:,1:2)))
+    linklist(:,1:2) = linklist(:,1:2)+1;
+<span class="keyword">end</span>
+
+<span class="comment">%----&#23545;&#26080;&#21521;&#22270;&#65292;&#23558;&#31532;&#19977;&#21015;&#20803;&#32032;&#32622;&#20026;1</span>
+linklist(:,3) = 1;
+net = spconvert(linklist);
+nodenum = length(net);
+net(nodenum,nodenum) = 0;
+<span class="comment">% &#27492;&#22788;&#21024;&#38500;&#33258;&#29615;&#65292;&#23545;&#35282;&#20803;&#20026;0&#20197;&#20445;&#35777;&#20026;&#26041;&#38453;</span>
+net = net-diag(diag(net));
+net = spones(net + net');
+<span class="comment">% &#30830;&#20445;&#37051;&#25509;&#30697;&#38453;&#20026;&#23545;&#31216;&#30697;&#38453;&#65292;&#21363;&#23545;&#24212;&#20110;&#26080;&#21521;&#32593;&#32476;</span>
+clear <span class="string">linklist</span>;
+</pre><h2>&#35745;&#31639;&#27599;&#20010;&#33410;&#28857;&#30340;H-index<a name="3"></a></h2><p>&#36890;&#29992;&#20110;&#26377;&#21521;&#32593;&#32476;&#65292;x-&gt;y&#34920;&#31034;x&#20851;&#27880;&#25110;&#24341;&#29992;y&#65292;&#35828;&#26126;y&#20256;&#25773;&#20102;&#30693;&#35782;&#32473;x</p><pre class="codeinput">[m,n]=size(net);<span class="comment">%&#30697;&#38453;&#22823;&#23567;</span>
+<span class="comment">% &#35745;&#31639;H-index</span>
+drepmat = repmat(sum(net,1)',1,n).*net;
+<span class="comment">% sum(net,1)&#27599;&#21015;&#20803;&#32032;&#30456;&#21152;&#24471;&#21040;&#34892;&#21521;&#37327;&#65292;&#34892;&#21521;&#37327;&#27599;&#20010;&#20803;&#32032;&#34920;&#31034;&#21015;&#26631;&#33410;&#28857;&#30340;&#20837;&#24230;</span>
+<span class="comment">% .*net&#33719;&#24471;&#27599;&#26465;&#26377;&#21521;&#36793;&#31661;&#23614;&#33410;&#28857;&#30340;&#20837;&#24230;</span>
+Heach = zeros(1,m);<span class="comment">%&#23384;&#25918;&#27599;&#20010;&#33410;&#28857;&#30340;H-index&#30340;&#34892;&#21521;&#37327;</span>
+<span class="keyword">for</span> i = 1:m
+    f = 1;
+    H = 0;
+    <span class="keyword">while</span> f ~= 0
+        <span class="keyword">if</span> sum(drepmat(:,i)&gt;=f) &gt;= f;<span class="comment">%&#33719;&#21462;&#31532;i&#21015;&#21363;&#25351;&#21521;i&#33410;&#28857;&#30340;&#33410;&#28857;&#38598;&#30340;h&#25351;&#25968;</span>
+            H=f;
+            f=f+1;
+        <span class="keyword">else</span>
+            f=0;
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+    Heach(i) = H;
+<span class="keyword">end</span>
+Heach = Heach+1;
+</pre><h2>&#20026;&#32593;&#32476;&#19978;&#30340;&#36793;&#21152;&#26435;<a name="4"></a></h2><p>&#21152;&#26435;&#20844;&#24335;: <img src="UseKDLPtoPredict_eq02493754248499853360.png" alt="$A_{xy}=\frac{h_{y}+1}{\sum_{N_{x}}(h_{n}+1)}, n\in N_{x}$"></p><pre class="codeinput">clear <span class="string">drepmat</span>;
+Hrepmat = repmat(Heach,m,1).*net;<span class="comment">%.*net&#33719;&#24471;&#27599;&#26465;&#26377;&#21521;&#36793;&#31661;&#22836;&#33410;&#28857;&#30340;H-index</span>
+clear <span class="string">Heach</span>;
+sim = Hrepmat./repmat(sum(Hrepmat,2),1,n);
+<span class="comment">% &#20998;&#27597;&#26159;&#31639;&#20986;&#33410;&#28857;&#30340;&#25351;&#21521;&#30340;&#25152;&#26377;&#33410;&#28857;&#30340;H-index&#20043;&#21644;&#65292;&#34920;&#31034;&#33410;&#28857;&#25509;&#25910;&#30340;&#30693;&#35782;&#24635;&#37327;</span>
+<span class="comment">% &#20998;&#23376;&#38500;&#20197;&#20998;&#27597;&#35828;&#26126;&#33410;&#28857;&#30340;&#37051;&#23621;&#21344;&#33410;&#28857;&#25509;&#25910;&#30340;&#30693;&#35782;&#37327;&#30340;&#27604;&#20363;</span>
+clear <span class="string">Hrepmat</span>;
+sim(isnan(sim))=0;sim(isinf(sim)) = 0;<span class="comment">%&#20998;&#27597;&#26377;&#21487;&#33021;&#26159;0&#65292;&#21363;&#19981;&#25351;&#21521;&#20219;&#20309;&#33410;&#28857;&#30340;&#33410;&#28857;</span>
+</pre><h2>&#23558;KDLP&#31639;&#27861;&#24212;&#29992;&#22312;&#21152;&#26435;&#21518;&#30340;&#32593;&#32476;&#19978;&#65292;&#29983;&#25104;&#30456;&#20284;&#24615;&#30697;&#38453;<a name="5"></a></h2><p>&#35745;&#31639;&#27599;&#23545;&#33410;&#28857;&#30340;&#30456;&#20284;&#24615;&#65292;&#24212;&#29992;&#20844;&#24335;: <img src="UseKDLPtoPredict_eq00245367054759406853.png" alt="$S^{KDLP}=(I-\beta A)^{-1}-I$"></p><pre class="codeinput">sim = inv( sparse(eye(m)) - 0.001*sim);
+sim = sim - sparse(eye(m));
+sim = sim+sim';<span class="comment">%&#26080;&#21521;&#22270;&#38656;&#35201;&#23545;&#31216;&#22788;&#29702;</span>
+sim = full(sim);
+<span class="comment">% &#27492;&#22788;&#21024;&#38500;&#33258;&#29615;&#65292;&#23545;&#35282;&#20803;&#20026;0&#20197;&#20445;&#35777;&#20026;&#26041;&#38453;</span>
+sim = sim-diag(diag(sim));
+</pre><h2>&#26681;&#25454;&#35745;&#31639;&#30340;&#30456;&#20284;&#24615;&#30697;&#38453;&#30011;&#25955;&#28857;&#22270;&#65292;&#23384;&#22312;&#30340;&#36793;&#21644;&#19981;&#23384;&#22312;&#30340;&#36793;&#39068;&#33394;&#19981;&#21516;<a name="6"></a></h2><pre class="codeinput">[row, col] = find( sim ~= 0 );
+num = size(row, 1);
+s = zeros(num,1);
+<span class="keyword">for</span> i = 1:num
+    s(i)=sim(row(i), col(i));<span class="comment">% &#27599;&#20010;&#38750;&#38646;&#30340;&#30456;&#20284;&#24615;&#20540;</span>
+<span class="keyword">end</span>
+c = ones(num,1);
+<span class="keyword">for</span> i = 1:num<span class="comment">% &#21306;&#20998;&#24050;&#23384;&#22312;&#19981;&#23384;&#22312;&#30340;&#36793;</span>
+    <span class="keyword">if</span> net(row(i), col(i)) ~= 0
+        c(i)=4.2;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+figure(1),scatter3(row,col,s,10,c,<span class="string">'filled'</span>);
+caxis([1,5]);
+</pre><img vspace="5" hspace="5" src="UseKDLPtoPredict_01.png" alt=""> <h2>&#21482;&#26174;&#31034;&#19981;&#23384;&#22312;&#30340;&#36793;&#30340;&#30456;&#20284;&#24615;&#65292;&#24182;&#20197;&#39068;&#33394;&#21306;&#20998;&#30456;&#20284;&#24615;&#22823;&#23567;<a name="7"></a></h2><pre class="codeinput">sim2=sim;
+<span class="keyword">for</span> i = 1:num <span class="comment">%&#21435;&#25481;&#24050;&#23384;&#22312;&#30340;&#36793;</span>
+     <span class="keyword">if</span> net(row(i), col(i)) ~= 0
+        sim2(row(i), col(i))=0;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+[row2, col2] = find( sim2 ~= 0 );
+num2 = size(row2, 1);
+s2 = zeros(num2,1);
+<span class="keyword">for</span> i = 1:num2
+    s2(i)=sim(row2(i), col2(i));<span class="comment">% &#27599;&#20010;&#38750;&#38646;&#30340;&#30456;&#20284;&#24615;&#20540;</span>
+<span class="keyword">end</span>
+c2 = s2;
+figure(2),scatter3(row2,col2,s2,10,c2,<span class="string">'filled'</span>);
+colorbar;
+</pre><img vspace="5" hspace="5" src="UseKDLPtoPredict_02.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% 使用KDLP算法对Jazz网络进行预测，使用H-index作为衡量节点的重要性方法
+clear;
+%% 读入连边列表linklist，构建网络邻接矩阵net，无向网络
+dataname = 'Jazz'; 
+datapath = 'D:\';       %数据集所在的路径
+thisdatapath = strcat(datapath,dataname,'.txt');% 第ith个数据的路径
+linklist = load(thisdatapath);                  % 导入数据（边的list）
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH 如果节点编号从0开始，将所有节点编号加1（matlab的下标从1开始）
+if ~all(all(linklist(:,1:2)))
+    linklist(:,1:2) = linklist(:,1:2)+1;
+end
+
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH对无向图，将第三列元素置为1
+linklist(:,3) = 1;
+net = spconvert(linklist);
+nodenum = length(net);
+net(nodenum,nodenum) = 0;
+% 此处删除自环，对角元为0以保证为方阵
+net = net-diag(diag(net));
+net = spones(net + net');
+% 确保邻接矩阵为对称矩阵，即对应于无向网络
+clear linklist;
+%% 计算每个节点的H-index
+% 通用于有向网络，x->y表示x关注或引用y，说明y传播了知识给x
+[m,n]=size(net);%矩阵大小
+% 计算H-index
+drepmat = repmat(sum(net,1)',1,n).*net;
+% sum(net,1)每列元素相加得到行向量，行向量每个元素表示列标节点的入度
+% .*net获得每条有向边箭尾节点的入度
+Heach = zeros(1,m);%存放每个节点的H-index的行向量
+for i = 1:m
+    f = 1;
+    H = 0;
+    while f ~= 0
+        if sum(drepmat(:,i)>=f) >= f;%获取第i列即指向i节点的节点集的h指数
+            H=f;
+            f=f+1;
+        else
+            f=0;
+        end
+    end
+    Heach(i) = H;
+end
+Heach = Heach+1;
+%% 为网络上的边加权
+% 加权公式:
+% $A_{xy}=\frac{h_{y}+1}{\sum_{N_{x}}(h_{n}+1)}, n\in N_{x}$
+clear drepmat;
+Hrepmat = repmat(Heach,m,1).*net;%.*net获得每条有向边箭头节点的H-index
+clear Heach;
+sim = Hrepmat./repmat(sum(Hrepmat,2),1,n);
+% 分母是算出节点的指向的所有节点的H-index之和，表示节点接收的知识总量
+% 分子除以分母说明节点的邻居占节点接收的知识量的比例
+clear Hrepmat;
+sim(isnan(sim))=0;sim(isinf(sim)) = 0;%分母有可能是0，即不指向任何节点的节点
+%% 将KDLP算法应用在加权后的网络上，生成相似性矩阵
+% 计算每对节点的相似性，应用公式:
+% $S^{KDLP}=(I-\beta A)^{-1}-I$
+sim = inv( sparse(eye(m)) - 0.001*sim);
+sim = sim - sparse(eye(m));
+sim = sim+sim';%无向图需要对称处理
+sim = full(sim);
+% 此处删除自环，对角元为0以保证为方阵
+sim = sim-diag(diag(sim));
+%% 根据计算的相似性矩阵画散点图，存在的边和不存在的边颜色不同
+[row, col] = find( sim ~= 0 ); 
+num = size(row, 1);
+s = zeros(num,1);
+for i = 1:num
+    s(i)=sim(row(i), col(i));% 每个非零的相似性值
+end
+c = ones(num,1);
+for i = 1:num% 区分已存在不存在的边
+    if net(row(i), col(i)) ~= 0
+        c(i)=4.2;
+    end
+end
+figure(1),scatter3(row,col,s,10,c,'filled');
+caxis([1,5]);
+%% 只显示不存在的边的相似性，并以颜色区分相似性大小
+sim2=sim;
+for i = 1:num %去掉已存在的边
+     if net(row(i), col(i)) ~= 0
+        sim2(row(i), col(i))=0;
+    end
+end
+[row2, col2] = find( sim2 ~= 0 ); 
+num2 = size(row2, 1);
+s2 = zeros(num2,1);
+for i = 1:num2
+    s2(i)=sim(row2(i), col2(i));% 每个非零的相似性值
+end
+c2 = s2;
+figure(2),scatter3(row2,col2,s2,10,c2,'filled');
+colorbar;
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>
